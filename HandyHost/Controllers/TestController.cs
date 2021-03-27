@@ -17,6 +17,7 @@ namespace HandyHost.Controllers
         [HttpGet("hello/{name}")]
         public IActionResult Method(string name)
         {
+            System.Console.WriteLine("Hello man");
             return Ok($"Hello, {name}!");
         }
     }
