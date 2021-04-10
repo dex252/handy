@@ -1,0 +1,22 @@
+﻿<script id="render-detail-error" type="text/x-jsrender">
+    <div class="col-xs-1 text-center mb-2">
+        {{if title != null}}
+        <span>{{: title}}</span>
+        {{/if}}
+    </div>
+    <div>
+        <span>Ошибка {{: status}}:</span>
+        <ul>
+            {{if errors != null && errors.$ != null}}
+            {{for errors.$ itemVar='~message'}}
+            <li>{{: ~message}}</li>
+            {{/for}}
+            {{else}}
+            <li>Неизвестная ошибка</li>
+            {{/if}}
+        </ul>
+    </div>
+       
+       
+
+</script>
