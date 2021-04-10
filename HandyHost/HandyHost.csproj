@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="C:\Users\Slava\.nuget\packages\nlog.config\4.7.9\contentFiles\any\any\NLog.config" />
+    <None Remove="Controllers\HomeController.cs~RF193aad.TMP" />
   </ItemGroup>
 
   <ItemGroup>

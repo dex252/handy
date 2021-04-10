@@ -14,7 +14,8 @@ namespace HandyHost.Controllers
         }
         public IActionResult Index(bool auth = false)
         {
-            Log.LogInformation("This is a test");
+            var browser = HttpContext.Request.Headers["User-Agent"].ToString();
+            Log.LogInformation($"{browser}");
             return View("~/Views/Pages/Home/Index.cshtml", auth);
         }
 
