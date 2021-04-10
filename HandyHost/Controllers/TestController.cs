@@ -4,21 +4,22 @@ using Microsoft.Extensions.Logging;
 namespace HandyHost.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api")]
     public class TestController : ControllerBase
     {
         private ILogger<TestController> Logger { get; }
 
         public TestController(ILogger<TestController> logger)
         {
+            System.Console.WriteLine("Controller Start");
             Logger = logger;
         }
 
-        [HttpGet("hello/{name}")]
-        public IActionResult Method(string name)
+        [HttpGet]
+        public IActionResult Method()
         {
-            System.Console.WriteLine("Hello man");
-            return Ok($"Hello, {name}!");
+            System.Console.WriteLine("Hello");
+            return Ok($"Hello");
         }
     }
 }
