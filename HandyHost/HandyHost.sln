@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30204.135
+VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandyHost", "HandyHost.csproj", "{EAED247C-9292-4F5C-9124-485F3074A730}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandyHost", "HandyHost.csproj", "{2398D0E3-EBC5-493D-ADC3-AE7459B29A9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EAED247C-9292-4F5C-9124-485F3074A730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAED247C-9292-4F5C-9124-485F3074A730}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EAED247C-9292-4F5C-9124-485F3074A730}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EAED247C-9292-4F5C-9124-485F3074A730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2398D0E3-EBC5-493D-ADC3-AE7459B29A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2398D0E3-EBC5-493D-ADC3-AE7459B29A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2398D0E3-EBC5-493D-ADC3-AE7459B29A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2398D0E3-EBC5-493D-ADC3-AE7459B29A9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2297A9FA-8073-4FCE-9FDE-56646D787FC9}
+		SolutionGuid = {FE7C42E4-5359-4410-A628-51E64EED6A1C}
 	EndGlobalSection
 EndGlobal
