@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace HandyHost.Controllers
 {
@@ -11,14 +12,18 @@ namespace HandyHost.Controllers
 
         public TestController(ILogger<TestController> logger)
         {
-            System.Console.WriteLine("Controller Start");
             Logger = logger;
         }
 
         [HttpGet]
         public IActionResult Method()
         {
-            System.Console.WriteLine("Hello");
+            var ip = HttpContext.Connection.RemoteIpAddress.ToString();
+            var browser = HttpContext.Request.Headers["User-Agent"].ToString();
+            var path = HttpContext.Request.Path.ToString();
+
+            Console.WriteLine($"{ip}: {browser}");
+            Console.WriteLine($"Path: {path}");
             return Ok($"Hello");
         }
     }
