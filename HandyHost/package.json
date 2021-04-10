@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack-dev": "SET NODE_ENV=development && webpack-cli --mode development",
-    "webpack-prod": "SET NODE_ENV=production && webpack-cli --mode production",
-    "webpack-dev-chrome-only": "SET NODE_ENV=development && SET CHROME=true &&webpack-cli --mode development"
+    "webpack-dev": "set NODE_ENV=development && webpack-cli --mode development",
+    "webpack-prod": "set NODE_ENV=production && webpack-cli --mode production",
+    "webpack-dev-chrome-only": "set NODE_ENV=development && set CHROME=true &&webpack-cli --mode development"
   },
   "keywords": [],
   "author": "",
