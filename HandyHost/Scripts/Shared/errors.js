@@ -1,7 +1,5 @@
 ﻿import './common';
 
-import { clearCookie } from './models/Authentication';
-
 const error = $('#modal-error');
 
 /**
@@ -20,13 +18,6 @@ export function renderErrorMessage(text) {
 };
 
 export function renderError(response) {
-    if(response.status == 401){
-        renderErrorMessage('Вы не авторизованы');
-        error.addClass('unauthorized');
-        clearCookie();
-        return;
-    }
-
     if(response.status == 500){
         renderErrorMessage('Внутренняя ошибка сервера');
         return;
@@ -42,7 +33,7 @@ export function renderError(response) {
         return;
     }
 
-    //Дикая ошибка при приведении типов от сервера (возвращает namespace класса Authenticate и подробности ошибки - уязвимость! :-) )
+    //Дикая ошибка при приведении типов от сервера (возвращает namespace класса Authenticate и подробности ошибки)
     if(response.responseJSON){
         $('.modal-error-body').empty();
         $('.modal-error-body').html(
@@ -63,12 +54,6 @@ export function renderError(response) {
         return;
     }
 
-
     // @ts-ignore
     error.modal('show');
 };
-
-$(document).on('hide.bs.modal', '#modal-error.unauthorized', function() {
-    error.removeClass('unauthorized');
-    window.location.href='./Home/Index?auth=true';
-});
