@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog.Web;
 
 namespace HandyHost
 {
@@ -13,6 +9,7 @@ namespace HandyHost
     {
         public static void Main(string[] args)
         {
+            NLogBuilder.ConfigureNLog("nlog.config");
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -21,6 +18,10 @@ namespace HandyHost
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }).ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.SetMinimumLevel(LogLevel.Trace);
+                }).UseNLog();
     }
 }

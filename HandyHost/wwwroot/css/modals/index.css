@@ -1,0 +1,16 @@
+﻿.modal-spinner-fade {
+    background-color: transparent!important;
+}
+
+.non-backlight-href {
+    text-decoration: none !important;
+    color: black!important;
+}
+
+.modal-body-pt-0{
+    padding-top: 0!important;
+}
+
+.small-text-size{
+    font-size: 12px;
+}
