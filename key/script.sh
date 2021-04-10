@@ -7,7 +7,7 @@ grep 'HandyHost' |
  awk '{print \$2}' |
  xargs kill -9 |
 (cd ~/handyhost/handy/HandyHost && git pull) ;
-(cd ~/handyhost/handy/HandyHost && nohup dotnet run HandyHost.dll);
+cd ~/handyhost/handy/HandyHost && nohup dotnet run HandyHost.dll &
 EOF
 
 #ps aux | grep 'HandyHost' | grep -v 'grep'  | awk '{print \$2}' | xargs kill -9
