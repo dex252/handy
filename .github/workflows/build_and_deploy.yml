@@ -38,7 +38,7 @@ jobs:
       - name: Zip repo
         run: zip -r ${{ env.package }} ./ -x *.git* README.md key/*
   
-      - name: Copy folder to server
+      - name: Copy zip to server
         uses: garygrossgarten/github-action-scp@release
         with:
           local: ${{ env.package }}
@@ -55,12 +55,8 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
-          script: |
-            set -xe && ps aux | 
-            grep 'HandyHost' |
-            grep -v 'grep'  |
-            awk '{print $2}' |
-            xargs kill -9
+          script:
+            set -xe && ps aux | grep 'HandyHost' |grep -v 'grep'  |awk '{print $2}' | xargs kill -9;
             
       - name: Unpack zip file and run application
         uses: appleboy/ssh-action@master
