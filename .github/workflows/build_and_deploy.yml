@@ -30,14 +30,19 @@ jobs:
     steps:
       - name: Git clone repo
         uses: actions/checkout@v2
+        
       - name: Dotnet install
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
       - run: dotnet build HandyHost --configuration Release
+      
       - name: Zip repo
         run: zip -r ${{ env.package }} ./ -x *.git* README.md key/*
-  
+        
+      - name: Unit Testing
+        run: dotnet test
+        
       - name: Copy zip to server
         uses: garygrossgarten/github-action-scp@release
         with:
@@ -58,7 +63,7 @@ jobs:
           script: |
             set -xe && ps aux | grep 'HandyHost' | grep -v 'grep' | awk '{print $2}' | xargs -r kill -9
             
-      - name: Unpack zip file and run application
+      - name: Unpack zip file and run application/Clear
         uses: appleboy/ssh-action@master
         with:
           HOST: ${{ secrets.HOST }}
