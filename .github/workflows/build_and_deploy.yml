@@ -29,7 +29,7 @@ jobs:
           echo test, and deploy your project.
           
       - name: Zip repo
-        uses: zip -r ${{ env.package }} ./ -x *.git*
+        run: zip -r ${{ env.package }} ./ -x *.git*
         
 #   deploy:
 #     runs-on: ubuntu-latest
