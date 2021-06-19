@@ -41,7 +41,7 @@ jobs:
         run: zip -r ${{ env.package }} ./ -x *.git* README.md key/*
         
       - name: Unit Testing
-        run: dotnet test
+        run: dotnet test HandyHost
         
       - name: Copy zip to server
         uses: garygrossgarten/github-action-scp@release
