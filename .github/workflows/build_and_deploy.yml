@@ -48,7 +48,7 @@ jobs:
           port: ${{ secrets.PORT }}
           privateKey: ${{ secrets.SSHKEY }}
           
-      - name: Unpack zip file
+      - name: Stop web-site
         uses: appleboy/ssh-action@master
         with:
           HOST: ${{ secrets.HOST }}
@@ -60,8 +60,16 @@ jobs:
             grep 'HandyHost' |
             grep -v 'grep'  |
             awk '{print $2}' |
-            xargs kill -9;
-            |
+            xargs kill -9
+            
+      - name: Unpack zip file and run application
+        uses: appleboy/ssh-action@master
+        with:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.SSHKEY }}
+          script: |
             rm handyhost/release/*
             unzip handyhost/${{ env.package }} -d handyhost/release
             rm handyhost/${{ env.package }}
