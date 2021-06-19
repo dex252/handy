@@ -28,25 +28,25 @@ jobs:
     runs-on: ubuntu-latest
 #     needs: [build]
     steps:
-#       - name: Git clone repo
-#         uses: actions/checkout@v2
-#       - name: Dotnet install
-#         uses: actions/setup-dotnet@v1
-#         with:
-#           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
-#       - run: dotnet build HandyHost --configuration Release
-#       - name: Zip repo
-#         run: zip -r ${{ env.package }} ./ -x *.git* README.md key/*
+      - name: Git clone repo
+        uses: actions/checkout@v2
+      - name: Dotnet install
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
+      - run: dotnet build HandyHost --configuration Release
+      - name: Zip repo
+        run: zip -r ${{ env.package }} ./ -x *.git* README.md key/*
   
-#       - name: Copy zip to server
-#         uses: garygrossgarten/github-action-scp@release
-#         with:
-#           local: ${{ env.package }}
-#           remote: handyhost/${{ env.package }}
-#           host: ${{ secrets.HOST }}
-#           username: ${{ secrets.USERNAME }}
-#           port: ${{ secrets.PORT }}
-#           privateKey: ${{ secrets.SSHKEY }}
+      - name: Copy zip to server
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ${{ env.package }}
+          remote: handyhost/${{ env.package }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          privateKey: ${{ secrets.SSHKEY }}
           
       - name: Stop web-site
         uses: appleboy/ssh-action@master
@@ -58,15 +58,15 @@ jobs:
           script: |
             set -xe && ps aux | grep 'HandyHost' | grep -v 'grep' | awk '{print $2}' | xargs -r kill -9
             
-#       - name: Unpack zip file and run application
-#         uses: appleboy/ssh-action@master
-#         with:
-#           HOST: ${{ secrets.HOST }}
-#           USERNAME: ${{ secrets.USERNAME }}
-#           PORT: ${{ secrets.PORT }}
-#           KEY: ${{ secrets.SSHKEY }}
-#           script: |
-#             rm handyhost/release/*
-#             unzip handyhost/${{ env.package }} -d handyhost/release
-#             rm handyhost/${{ env.package }}
-#             dotnet handyhost/release/HandyHost/bin/Release/netcoreapp3.1/HandyHost.dll
+      - name: Unpack zip file and run application
+        uses: appleboy/ssh-action@master
+        with:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.SSHKEY }}
+          script: |
+            rm handyhost/release/*
+            unzip handyhost/${{ env.package }} -d handyhost/release
+            rm handyhost/${{ env.package }}
+            dotnet handyhost/release/HandyHost/bin/Release/netcoreapp3.1/HandyHost.dll
