@@ -30,17 +30,17 @@ namespace HandyTests
         public static IEnumerable<object[]> AnimalData =>
             new List<object[]>
             {
-               new object[]
+                new object[]
                 {
-                     new Tuple<string, bool>
+                    new Tuple<string, bool>
                     (
                         "cat",
                         true
                     )
                 },
-              new object[]
+                new object[]
                 {
-                     new Tuple<string, bool>
+                    new Tuple<string, bool>
                     (
                         "dog",
                         false
