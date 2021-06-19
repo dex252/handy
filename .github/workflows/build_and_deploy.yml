@@ -12,9 +12,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
 #       - name: Git clone repo
 #         uses: actions/checkout@v2
 #       - name: Dotnet install
@@ -27,6 +27,29 @@ jobs:
 #           ssh -tt root@46.161.49.158
 #           cd ~/handyhost/
 #           mkdir test
+#       - name: Executing remote command
+#         uses: appleboy/ssh-action@master
+#         with:
+#           HOST: ${{ secrets.HOST }}
+#           USERNAME: ${{ secrets.USERNAME }}
+#           PORT: ${{ secrets.PORT }}
+#           KEY: ${{ secrets.SSHKEY }}
+#           script: |
+#             ls
+        
+  deploy:
+    runs-on: ubuntu-latest
+#     needs: [build]
+    steps:
+#       - name: Git clone repo
+#         uses: actions/checkout@v2
+#       - name: Dotnet install
+#         uses: actions/setup-dotnet@v1
+#         with:
+#           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
+#       - run: dotnet build HandyHost --configuration Release
+#       - name: Zip repo
+#         run: zip -r ${{ env.package }} ./ -x *.git*
       - name: Executing remote command
         uses: appleboy/ssh-action@master
         with:
@@ -35,23 +58,4 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           script: |
-            ls
-        
-#   deploy:
-#     runs-on: ubuntu-latest
-#     needs: [build]
-#     steps:
-#       - name: Git clone repo
-#         uses: actions/checkout@v2
-#       - name: Dotnet install
-#         uses: actions/setup-dotnet@v1
-#         with:
-#           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
-#       - run: dotnet build HandyHost --configuration Release
-#       - name: Run a multi-line script
-#         run: |
-#           echo Add other actions to build,
-#           echo test, and deploy your project.
-          
-#       - name: Zip repo
-#         run: zip -r ${{ env.package }} ./ -x *.git*
+            supervisorctl stop HandyHost
