@@ -3,7 +3,7 @@ name: CI/CD
 env:
   debug: "Debug"
   release: "Release"
-  version: "${{ github.sha }}"
+  package: "${{ github.sha }}.zip"
   
 on:
   push:
@@ -18,11 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Init
-        run: echo "Start in ${{ env.debug }} mode. Version ${{env.version}}."
+        run: echo "Start in ${{ env.debug }} mode"
         
       - name: Git clone repo
         uses: actions/checkout@v2
-       
 
       - name: Run a multi-line script
         run: |
@@ -30,7 +29,7 @@ jobs:
           echo test, and deploy your project.
           
       - name: Zip repo
-        uses: zip -r ${{env.version}}.zip ./ -x *.git*
+        uses: zip -r ${{ env.package }} ./ -x *.git*
         
 #   deploy:
 #     runs-on: ubuntu-latest
