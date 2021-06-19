@@ -69,6 +69,5 @@ jobs:
             rm -r handyhost/release/*
             unzip handyhost/${{ env.package }} -d handyhost/release
             rm handyhost/${{ env.package }}
-            screen -ls | grep 'Dead' | cut -d. -f1 | awk '{print $1}' | xargs kill
+            screen -wipe
             screen -d -m -S SERVER bash -c 'dotnet handyhost/release/HandyHost/bin/Release/netcoreapp3.1/HandyHost.dll'
-#            dotnet handyhost/release/HandyHost/bin/Release/netcoreapp3.1/HandyHost.dll
