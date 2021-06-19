@@ -58,4 +58,5 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           script: |
-            supervisorctl stop HandyHost
+            cd ~/handyhost/handy/HandyHost
+            dotnet publish HandyHost --configuration Debug
