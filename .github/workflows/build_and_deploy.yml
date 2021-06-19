@@ -24,7 +24,7 @@ jobs:
       - run: dotnet build HandyHost --configuration Debug
       - name: Test
         run: |
-          ssh root@46.161.49.158
+          ssh -tt root@46.161.49.158
           cd ~/handyhost/
           mkdir test
           
