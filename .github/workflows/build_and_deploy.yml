@@ -22,20 +22,7 @@ jobs:
 #         with:
 #           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
 #       - run: dotnet build HandyHost --configuration Debug
-#       - name: Test
-#         run: |
-#           ssh -tt root@46.161.49.158
-#           cd ~/handyhost/
-#           mkdir test
-#       - name: Executing remote command
-#         uses: appleboy/ssh-action@master
-#         with:
-#           HOST: ${{ secrets.HOST }}
-#           USERNAME: ${{ secrets.USERNAME }}
-#           PORT: ${{ secrets.PORT }}
-#           KEY: ${{ secrets.SSHKEY }}
-#           script: |
-#             ls
+
         
   deploy:
     runs-on: ubuntu-latest
@@ -49,7 +36,7 @@ jobs:
           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
       - run: dotnet build HandyHost --configuration Release
       - name: Zip repo
-        run: zip -r ${{ env.package }} ./ -x *.git* README.md key/* /key
+        run: zip -r ${{ env.package }} ./ -x *.git* README.md key/*
   
       - name: Copy folder to server
         uses: garygrossgarten/github-action-scp@release
@@ -69,6 +56,12 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           script: |
+            set -xe && ps aux | 
+            grep 'HandyHost' |
+            grep -v 'grep'  |
+            awk '{print \$2}' |
+            xargs kill -9
             rm handyhost/release/*
             unzip handyhost/${{ env.package }} -d handyhost/release
             rm handyhost/${{ env.package }}
+            dotnet handyhost/release/HandyHost/bin/Release/netcoreapp3.1/HandyHost.dll
