@@ -51,22 +51,22 @@ jobs:
       - name: Zip repo
         run: zip -r ${{ env.package }} ./ -x *.git* script.sh README.md id_rsa*
   
-#       - name: Copy folder to server
-#         uses: garygrossgarten/github-action-scp@release
-#         with:
-#           local: ${{ env.package }}
-#           remote: handyhost/${{ env.package }}
-#           host: ${{ secrets.HOST }}
-#           username: ${{ secrets.USERNAME }}
-#           port: ${{ secrets.PORT }}
-#           privateKey: ${{ secrets.SSHKEY }}
+      - name: Copy folder to server
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ${{ env.package }}
+          remote: handyhost/${{ env.package }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          privateKey: ${{ secrets.SSHKEY }}
           
-#       - name: Unpack zip file
-#         uses: appleboy/ssh-action@master
-#         with:
-#           HOST: ${{ secrets.HOST }}
-#           USERNAME: ${{ secrets.USERNAME }}
-#           PORT: ${{ secrets.PORT }}
-#           KEY: ${{ secrets.SSHKEY }}
-#           script: |
-            
+      - name: Unpack zip file
+        uses: appleboy/ssh-action@master
+        with:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.SSHKEY }}
+          script: |
+            unzip -o handyhost/${{ env.package }} -d release
