@@ -59,7 +59,7 @@ jobs:
             set -xe && ps aux | 
             grep 'HandyHost' |
             grep -v 'grep'  |
-            awk '{print \$2}' |
+            awk '{print $2}' |
             xargs kill -9;
             |
             rm handyhost/release/*
