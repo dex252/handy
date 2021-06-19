@@ -56,7 +56,7 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           script: |
-            set -xe && ps aux | grep 'HandyHost' | awk '{print $2}' | xargs -r kill -9
+            set -xe && ps aux | grep 'HandyHost' | grep -v 'grep' | awk '{print $2}' | xargs -r kill -9
             
 #       - name: Unpack zip file and run application
 #         uses: appleboy/ssh-action@master
