@@ -1,8 +1,6 @@
 name: CI/CD
 
 env:
-  debug: "Debug"
-  release: "Release"
   package: "${{ github.sha }}.zip"
   
 on:
@@ -17,11 +15,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Init
-        run: echo "Start in ${{ env.debug }} mode"
-        
       - name: Git clone repo
         uses: actions/checkout@v2
+        
+      - name: Dotnet install
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
+      - run: dotnet build <HandyHost>
 
       - name: Run a multi-line script
         run: |
