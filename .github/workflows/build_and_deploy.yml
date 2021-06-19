@@ -21,7 +21,7 @@ jobs:
         run: echo "Start in ${{ env.debug }} mode. Version ${{env.version}}."
         
       - name: Git clone repo
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
        
       - name: Run a multi-line script
         run: |
