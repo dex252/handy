@@ -49,7 +49,7 @@ jobs:
           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
       - run: dotnet build HandyHost --configuration Release
       - name: Zip repo
-        run: zip -r ${{ env.package }} ./ -x *.git* script.sh README.md id_rsa*
+        run: zip -r ${{ env.package }} ./ -x *.git* README.md key/**
   
       - name: Copy folder to server
         uses: garygrossgarten/github-action-scp@release
@@ -69,4 +69,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           script: |
-            unzip -o handyhost/${{ env.package }} -d release
+            rm handyhost/release/*
+            unzip handyhost/${{ env.package }} -d handyhost/release
+            rm handyhost/${{ env.package }}
